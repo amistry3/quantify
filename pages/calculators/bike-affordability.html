@@ -51,45 +51,29 @@
 </head>
 
 <body class="min-h-screen flex flex-col font-sans text-slate-800 dark:text-slate-200">
-  <header class="hero-gradient">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
-      <a href="/index.html" class="flex items-center gap-2 focus-ring">
-        <img src="/assets/img/favicon-32x32.png" alt="HeroZero" class="w-8 h-8" />
-        <span class="font-extrabold text-slate-900 dark:text-slate-100 text-2xl">HeroZero</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-600 dark:text-slate-300">
-        <a href="/" class="hover:text-slate-900 dark:hover:text-white focus-ring">Home</a>
-        <a href="/index.html#calculators" class="hover:text-slate-900 dark:hover:text-white focus-ring">Calculators</a>
-        <a href="/pages/guides/guides.html" class="hover:text-slate-900 dark:hover:text-white focus-ring">Guides</a>
-        <a href="/pages/blog.html" class="hover:text-slate-900 dark:hover:text-white focus-ring">Blog</a>
-        <button id="themeToggle" type="button"
-          class="focus-ring rounded px-3 py-1.5 border border-slate-300 dark:border-slate-600 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition"
-          aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
-      </nav>
-    </div>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 text-center">
-      <h1 id="overview-heading"
-        class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900 dark:text-slate-100 flex items-center justify-center gap-3">
-        <span class="inline-flex w-12 h-12 items-center justify-center rounded-xl bg-brand text-white shadow">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="w-full h-full" aria-hidden="true">
-            <circle cx="14" cy="34" r="4" fill="currentColor" />
-            <circle cx="34" cy="34" r="4" fill="currentColor" />
-            <path d="M10 30h6l8-12h8l2 6" />
-            <path d="M20 22l6 0" />
-            <path d="M30 18l4-4" />
-          </svg>
-        </span>
-        <span>Bike & Scooter Affordability</span>
-      </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">India · Values in INR
-        (₹) — Estimate EMI, running cost and affordability before you buy.</p>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 text-center">
+    <h1 id="overview-heading"
+      class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900 dark:text-slate-100 flex items-center justify-center gap-3">
+      <span class="inline-flex w-12 h-12 items-center justify-center rounded-xl bg-brand text-white shadow">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" class="w-full h-full" aria-hidden="true">
+          <circle cx="14" cy="34" r="4" fill="currentColor" />
+          <circle cx="34" cy="34" r="4" fill="currentColor" />
+          <path d="M10 30h6l8-12h8l2 6" />
+          <path d="M20 22l6 0" />
+          <path d="M30 18l4-4" />
+        </svg>
+      </span>
+      <span>Bike & Scooter Affordability</span>
+    </h1>
+    <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">India · Values in INR
+      (₹) — Estimate EMI, running cost and affordability before you buy.</p>
+  </div>
 
   <main class="flex-1">
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid gap-10 lg:grid-cols-2 items-start">
+      <div class="calculator-layout">
         <!-- Form Column -->
         <div class="space-y-6">
           <div class="card-tw p-7">
@@ -119,7 +103,7 @@
                   </label>
                   <label class="text-xs font-medium text-slate-600 dark:text-slate-300 flex flex-col gap-1">Income Tax
                     <input id="incomeTax" type="number" value="0" readonly
-                      class="w-full rounded-md border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/60 px-3 py-2 text-sm focus:outline-none font-mono" />
+                      class="input-text font-mono" />
                   </label>
                   <label class="text-xs font-medium text-slate-600 dark:text-slate-300 flex flex-col gap-2"
                     data-tooltip="Base price (no tax/insurance)">Price (Ex-Showroom)
@@ -243,7 +227,7 @@
               <div id="dpNotice" class="alert-inline hidden" role="status">Recommended down payment is at least
                 <strong>10–20%</strong> for two‑wheelers.</div>
               <div class="flex justify-end">
-                <button id="calcBtn" type="button" class="btn-primary btn-ripple w-full sm:w-auto"> <span
+                <button id="calcBtn" type="button" class="btn-primary btn-ripple"> <span
                     class="inline-flex items-center gap-2"><span>Calculate</span><span
                       aria-hidden="true">➡</span></span></button>
               </div>
@@ -538,7 +522,21 @@
       // call calculate if defined
       try { if (typeof calculate === 'function') calculate(); } catch (e) { }
     });
+
+    // Fetch and inject header
+    fetch('/pages/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
   </script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 </body>
 
 </html>

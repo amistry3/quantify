@@ -29,26 +29,11 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"HeroZero Blog","url":"https://herozero.in/pages/blog.html"}</script>
 </head>
 <body class="min-h-screen flex flex-col font-sans text-slate-800 dark:text-slate-200">
-    <header class="hero-gradient relative overflow-hidden">
-        <div class="absolute inset-0 bg-noise"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
-            <a href="/index.html" class="flex items-center gap-2 focus-ring">
-                <img src="/assets/img/favicon-32x32.png" alt="HeroZero" class="w-8 h-8" />
-                <span class="font-extrabold text-slate-900 dark:text-slate-100 text-2xl">HeroZero</span>
-            </a>
-            <nav class="hidden md:flex items-center gap-6 text-sm text-slate-600 dark:text-slate-300">
-                <a href="/" class="hover:text-slate-900 dark:hover:text-white focus-ring">Home</a>
-                <a href="/index.html#calculators" class="hover:text-slate-900 dark:hover:text-white focus-ring">Calculators</a>
-                <a href="/pages/guides/guides.html" class="hover:text-slate-900 dark:hover:text-white focus-ring">Guides</a>
-                <a href="/pages/blog.html" class="hover:text-slate-900 dark:hover:text-white focus-ring font-semibold">Blog</a>
-                <button id="themeToggle" type="button" class="focus-ring rounded px-3 py-1.5 border border-slate-300 dark:border-slate-600 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
-            </nav>
-        </div>
-        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-center">
-            <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900 dark:text-slate-100">Blog & Guides</h1>
-            <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">Explainers and quick start guides for our calculators plus foundational personal finance concepts.</p>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-center">
+        <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900 dark:text-slate-100">Blog & Guides</h1>
+        <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">Explainers and quick start guides for our calculators plus foundational personal finance concepts.</p>
+    </div>
     <main class="flex-1">
         <br />
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -106,13 +91,13 @@
             <div class="text-slate-500">&copy; 2025 HeroZero. All Rights Reserved.</div>
         </div>
     </footer>
+    <script src="/assets/js/ui-helpers.js"></script>
     <script>
-        // Dark mode toggle
-        (function(){const root=document.documentElement;const btn=document.getElementById('themeToggle');const stored=localStorage.getItem('hz-theme');if(stored==='dark'){root.classList.add('dark');btn&&btn.setAttribute('aria-pressed','true');btn&&(btn.textContent='☀️');}btn&&btn.addEventListener('click',()=>{const d=root.classList.toggle('dark');btn.setAttribute('aria-pressed',d?'true':'false');btn.textContent=d?'☀️':'🌙';localStorage.setItem('hz-theme',d?'dark':'light');});})();
-        // Search filtering
-        const search=document.getElementById('postSearch');const cards=[...document.querySelectorAll('#postsGrid > a')];const noRes=document.getElementById('noResults');function apply(){const q=(search.value||'').trim().toLowerCase();let shown=0;cards.forEach(c=>{const hay=(c.dataset.title+' '+(c.dataset.tags||'')+' '+c.querySelector('p')?.textContent).toLowerCase();const match=!q||hay.includes(q);c.classList.toggle('hidden',!match);if(match)shown++;});noRes.classList.toggle('hidden',shown!==0);}search?.addEventListener('input',apply);window.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();search?.focus();}});
-        // Ripple effect reuse
-        document.addEventListener('click',e=>{const t=e.target.closest('.ripple-container');if(!t)return;const r=document.createElement('span');r.className='ripple';const rect=t.getBoundingClientRect();const size=Math.max(rect.width,rect.height);r.style.width=r.style.height=size+'px';r.style.left=(e.clientX-rect.left-size/2)+'px';r.style.top=(e.clientY-rect.top-size/2)+'px';t.appendChild(r);setTimeout(()=>r.remove(),600);});
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
     </script>
 </body>
 </html>

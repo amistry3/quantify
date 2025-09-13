@@ -131,3 +131,21 @@
   .chart-center-label{transition:transform .4s ease,color .4s ease}
   .chart-center-label.bump{animation:center-bump .5s ease}
   @keyframes center-bump{0%{transform:translate(-50%,-50%) scale(.7);opacity:.3}50%{transform:translate(-50%,-50%) scale(1.08);opacity:1}100%{transform:translate(-50%,-50%) scale(1)}}
+
+  /* Standardized calculator layout */
+  .calculator-layout {
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .calculator-layout {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Standardized informational accordion */
+  .info-accordion {
+    margin-top: 5rem;
+  }

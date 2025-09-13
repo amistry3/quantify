@@ -29,26 +29,11 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"HeroZero - Contact","url":"https://herozero.in/pages/contact.html"}</script>
 </head>
 <body class="min-h-screen flex flex-col font-sans text-slate-800 dark:text-slate-200">
-  <header class="hero-gradient relative overflow-hidden">
-    <div class="absolute inset-0 bg-noise"></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
-      <a href="/index.html" class="flex items-center gap-2 focus-ring">
-        <img src="/assets/img/favicon-32x32.png" alt="HeroZero" class="w-8 h-8" />
-        <span class="font-extrabold text-slate-900 dark:text-slate-100 text-2xl">HeroZero</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-600 dark:text-slate-300">
-        <a href="/" class="hover:text-slate-900 dark:hover:text-white focus-ring">Home</a>
-  <a href="/index.html#calculators" class="hover:text-slate-900 dark:hover:text-white focus-ring">Calculators</a>
-  <a href="/pages/guides/guides.html" class="hover:text-slate-900 dark:hover:text-white focus-ring">Guides</a>
-        <a href="/pages/blog.html" class="hover:text-slate-900 dark:hover:text-white focus-ring">Blog</a>
-        <button id="themeToggle" type="button" class="focus-ring rounded px-3 py-1.5 border border-slate-300 dark:border-slate-600 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
-      </nav>
-    </div>
-    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-center">
-      <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900 dark:text-slate-100">Contact</h1>
-      <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">We read every message. Use the quick form below or email us directly – we usually respond within 24 hours on weekdays.</p>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-center">
+    <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900 dark:text-slate-100">Contact</h1>
+    <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">We read every message. Use the quick form below or email us directly – we usually respond within 24 hours on weekdays.</p>
+  </div>
   <main class="flex-1">
     <br/>
     <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -91,7 +76,7 @@
             </div>
             <br/>
             <div class="flex items-center gap-4">
-              <button type="submit" class="ripple-container inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-brand text-white text-sm font-medium shadow-sm hover:shadow transition focus-ring">
+              <button type="submit" class="btn-primary btn-ripple">
                 <span>Send</span>
               </button>
               <p class="text-[11px] text-slate-500 dark:text-slate-500">Your mail app will open with the details.</p>
@@ -113,13 +98,13 @@
       <div class="text-slate-500">&copy; 2025 HeroZero. All Rights Reserved.</div>
     </div>
   </footer>
-  <script>
-    // Theme toggle
-    (function(){const root=document.documentElement;const btn=document.getElementById('themeToggle');const stored=localStorage.getItem('hz-theme');if(stored==='dark'){root.classList.add('dark');btn&&btn.setAttribute('aria-pressed','true');btn&&(btn.textContent='☀️');}btn&&btn.addEventListener('click',()=>{const d=root.classList.toggle('dark');btn.setAttribute('aria-pressed',d?'true':'false');btn.textContent=d?'☀️':'🌙';localStorage.setItem('hz-theme',d?'dark':'light');});})();
-    // Basic client-side validation (prevent empty whitespace)
-    function validateContact(e){const form=e.target;['name','email','message'].forEach(id=>{const el=form.elements[id];if(el && el.value){el.value=el.value.trim();}});if(!form.name.value||!form.email.value||!form.message.value){e.preventDefault();return false;}return true;}
-    // Ripple effect for button reuse
-    document.addEventListener('click',e=>{const t=e.target.closest('.ripple-container');if(!t)return;const r=document.createElement('span');r.className='ripple';const rect=t.getBoundingClientRect();const size=Math.max(rect.width,rect.height);r.style.width=r.style.height=size+'px';r.style.left=(e.clientX-rect.left-size/2)+'px';r.style.top=(e.clientY-rect.top-size/2)+'px';t.appendChild(r);setTimeout(()=>r.remove(),600);});
-  </script>
+  <script src="/assets/js/ui-helpers.js"></script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 </body>
 </html>

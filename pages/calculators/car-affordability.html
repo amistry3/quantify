@@ -32,41 +32,27 @@
   </script>
 </head>
 <body class="min-h-screen flex flex-col font-sans text-slate-800 dark:text-slate-200">
-  <header class="hero-gradient">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
-      <a href="/index.html" class="flex items-center gap-2 focus-ring">
-        <img src="/assets/img/favicon-32x32.png" alt="HeroZero" class="w-8 h-8" />
-        <span class="font-extrabold text-slate-900 dark:text-slate-100 text-2xl">HeroZero</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-600 dark:text-slate-300">
-        <a href="/" class="hover:text-slate-900 dark:hover:text-white focus-ring">Home</a>
-        <a href="/index.html#calculators" class="hover:text-slate-900 dark:hover:text-white focus-ring">Calculators</a>
-        <a href="/pages/guides/guides.html" class="hover:text-slate-900 dark:hover:text-white focus-ring">Guides</a>
-        <a href="/pages/blog.html" class="hover:text-slate-900 dark:hover:text-white focus-ring">Blog</a>
-        <button id="themeToggle" type="button" class="focus-ring rounded px-3 py-1.5 border border-slate-300 dark:border-slate-600 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition" aria-pressed="false" aria-label="Toggle dark mode" data-tooltip="Toggle dark mode">🌙</button>
-      </nav>
-    </div>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 text-center">
-      <h1 id="overview-heading" class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900 dark:text-slate-100 flex items-center justify-center gap-3">
-        <span class="inline-flex w-12 h-12 items-center justify-center rounded-xl bg-brand text-white shadow">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-              stroke-linejoin="round" class="w-full h-full">
-              <path d="M6 28l4-12h28l4 12" />
-              <path d="M14 34a3 3 0 116 0 3 3 0 01-6 0zm14 0a3 3 0 116 0 3 3 0 01-6 0z" fill="currentColor" />
-              <path d="M10 28h28" />
-            </svg>
-        </span>
-        <span>Find Your Perfect Ride</span>
-      </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">India · Values in INR (₹)</p>
-      <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Estimate true car ownership cost, EMI burden & affordability before you commit.</p>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 text-center">
+    <h1 id="overview-heading" class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900 dark:text-slate-100 flex items-center justify-center gap-3">
+      <span class="inline-flex w-12 h-12 items-center justify-center rounded-xl bg-brand text-white shadow">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round" class="w-full h-full">
+            <path d="M6 28l4-12h28l4 12" />
+            <path d="M14 34a3 3 0 116 0 3 3 0 01-6 0zm14 0a3 3 0 116 0 3 3 0 01-6 0z" fill="currentColor" />
+            <path d="M10 28h28" />
+          </svg>
+      </span>
+      <span>Find Your Perfect Ride</span>
+    </h1>
+    <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">India · Values in INR (₹)</p>
+    <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Estimate true car ownership cost, EMI burden & affordability before you commit.</p>
+  </div>
 
   <main class="flex-1">
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <!-- Calculator + Results -->
-      <div class="grid gap-10 lg:grid-cols-2 items-start">
+      <div class="calculator-layout">
         <!-- Form Column -->
         <div class="space-y-6">
           <div class="card-tw p-7">
@@ -83,7 +69,7 @@
                     </div>
                   </label>
                   <label class="text-xs font-medium text-slate-600 dark:text-slate-300 flex flex-col gap-1">Income Tax
-                    <input id="incomeTax" type="number" value="0" readonly class="w-full rounded-md border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/60 px-3 py-2 text-sm focus:outline-none font-mono" />
+                    <input id="incomeTax" type="number" value="0" readonly class="input-text font-mono" />
                   </label>
                   <label class="text-xs font-medium text-slate-600 dark:text-slate-300 flex flex-col gap-2" data-tooltip="Base price (no tax/insurance)">Price (Ex-Showroom)
                     <div class="flex items-center gap-3">
@@ -159,7 +145,7 @@
               </div>
               <div id="dpNotice" class="alert-inline hidden" role="status">Recommended down payment is at least <strong>20%</strong> of on-road price.</div>
               <div class="flex justify-end">
-                <button id="calcBtn" type="button" class="btn-primary btn-ripple w-full sm:w-auto"> <span class="inline-flex items-center gap-2"><span>Calculate</span><span aria-hidden="true">➡</span></span></button>
+                <button id="calcBtn" type="button" class="btn-primary btn-ripple"> <span class="inline-flex items-center gap-2"><span>Calculate</span><span aria-hidden="true">➡</span></span></button>
               </div>
             </form>
           </div>
@@ -231,7 +217,7 @@
       </div>
     </section>
     <!-- Knowledge / Educational Content -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20" aria-labelledby="car-affordability-knowledge">
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 info-accordion" aria-labelledby="car-affordability-knowledge">
       <h2 id="car-affordability-knowledge" class="text-xl font-extrabold text-slate-900 dark:text-slate-100 mb-6">Learn More About Car Affordability</h2>
       <div class="space-y-5">
         <details class="card-tw p-5">
@@ -311,50 +297,112 @@
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="/assets/js/ui-helpers.js"></script>
   <script>
-    // Dark mode toggle (shared pattern) with chart refresh
-    (function(){const root=document.documentElement;const btn=document.getElementById('themeToggle');const stored=localStorage.getItem('hz-theme');if(stored==='dark'){root.classList.add('dark');btn&&btn.setAttribute('aria-pressed','true');btn&&(btn.textContent='☀️');}
-      function refreshChartTheme(){ if(window.chart && chart.series && chart.series[0]) { const ratioVal=parseFloat(document.getElementById('ratioPill').textContent)||0; const color=ratioVal<=15? '#16a34a' : (ratioVal<=25? '#f59e0b':'#dc2626'); renderChart(ratioVal,color,true); }}
-      btn&&btn.addEventListener('click',()=>{const isDark=root.classList.toggle('dark');btn.setAttribute('aria-pressed',isDark?'true':'false');btn.textContent=isDark?'☀️':'🌙';localStorage.setItem('hz-theme',isDark?'dark':'light');setTimeout(refreshChartTheme,20);});})();
+    let chart;
+    function renderChart(ratio, color, fromThemeToggle = false) {
+      const pct = HZ_clamp(ratio, 0, 100);
+      if (chart && chart.destroy) chart.destroy();
+      const isDark = document.documentElement.classList.contains('dark');
+      const remainingColor = isDark ? '#334155' : '#e2e8f0';
+      chart = Highcharts.chart('affordChart', { chart: { type: 'pie', backgroundColor: 'transparent', animation: true, spacing: [0, 0, 0, 0] }, title: null, tooltip: { enabled: false }, plotOptions: { pie: { innerSize: '68%', borderWidth: 0, shadow: false, animation: !fromThemeToggle, dataLabels: { enabled: false }, states: { hover: { enabled: false } } } }, series: [{ name: 'Share', data: [{ name: 'EMI %', y: pct, color: color }, { name: 'Remaining', y: 100 - pct, color: remainingColor }] }], credits: { enabled: false }, legend: { enabled: false } });
+      document.getElementById('chartCenter').textContent = `${pct.toFixed(1)}%`;
+    }
 
-  const clamp=(v,min,max)=>Math.min(Math.max(v,min),max);
-  function countUp(el,to,duration=700,isPercent=false){ window.HZ_countUp(el,to,duration,isPercent); }
-  let chart;function renderChart(ratio,color,fromThemeToggle=false){const pct=clamp(ratio,0,100);if(chart&&chart.destroy)chart.destroy();const isDark=document.documentElement.classList.contains('dark');const remainingColor=isDark?'#334155':'#e2e8f0';chart=Highcharts.chart('affordChart',{chart:{type:'pie',backgroundColor:'transparent',animation:true,spacing:[0,0,0,0]},title:null,tooltip:{enabled:false},plotOptions:{pie:{innerSize:'68%',borderWidth:0,shadow:false,animation:!fromThemeToggle,dataLabels:{enabled:false},states:{hover:{enabled:false}}}},series:[{name:'Share',data:[{name:'EMI %',y:pct,color:color},{name:'Remaining',y:100-pct,color:remainingColor}]}],credits:{enabled:false},legend:{enabled:false}});document.getElementById('chartCenter').textContent=`${pct.toFixed(1)}%`;}
-    function calculateTax(income){let tax=0;if(income>2400000){tax=0.30*(income-2400000)+0.25*400000+0.20*400000+0.15*400000+0.10*400000+0.05*400000;}else if(income>2000000){tax=0.25*(income-2000000)+0.20*400000+0.15*400000+0.10*400000+0.05*400000;}else if(income>1600000){tax=0.20*(income-1600000)+0.15*400000+0.10*400000+0.05*400000;}else if(income>1200000){tax=0.15*(income-1200000)+0.10*400000+0.05*400000;}else if(income>800000){tax=0.10*(income-800000)+0.05*400000;}else if(income>400000){tax=0.05*(income-400000);}if(income<=1200000){tax=0;}return tax;}
-  function calculate(){const btn=document.getElementById('calcBtn');btn.disabled=true;const annualIncome=+document.getElementById('annualIncome').value||0;const incomeTaxEl=document.getElementById('incomeTax');const calculatedTax=calculateTax(annualIncome);incomeTaxEl.value=Math.round(calculatedTax);const incomeTax=calculatedTax;const price=+document.getElementById('price').value||0;const roadTax=+document.getElementById('roadTax').value||0;const dpPct=clamp(+document.getElementById('downPaymentPercent').value||0,0,100);const tenureYears=Math.max(+document.getElementById('loanTenure').value||0,1);const rateAnnual=Math.max(+document.getElementById('interestRate').value||0,0);const monthlyKm=+document.getElementById('monthlyDistance').value||0;const mileage=Math.max(+document.getElementById('mileage').value||1,0.1);const fuelPrice=+document.getElementById('fuelPrice').value||0;const lifespan=Math.max(+document.getElementById('lifespan').value||0,1);const insurance=+document.getElementById('insurance').value||0;const netAnnual=Math.max(annualIncome-incomeTax,0);const onRoad=price+roadTax;const downPayment=onRoad*(dpPct/100);const loan=Math.max(onRoad-downPayment,0);const n=tenureYears*12;const r=rateAnnual/12/100;let emi=0;if(loan>0&&n>0){emi=r===0?(loan/n):(loan*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);}const fuelYear=(monthlyKm*12/mileage)*fuelPrice;const totalFuel=fuelYear*lifespan;const totalOwnership=onRoad+totalFuel+(insurance*lifespan);const monthlyNet=netAnnual/12;const ratio=monthlyNet>0?(emi/monthlyNet)*100:100;let verdict,color,tip,badgeClass;if(ratio<=15){verdict='Affordable – fits budget.';color='#16a34a';badgeClass='badge-good';tip='Healthy range: maintain savings momentum.';}else if(ratio<=25){verdict='Stretching – optimise.';color='#f59e0b';badgeClass='badge-warn';tip='Increase down payment or reconsider variant.';}else{verdict='Not Affordable – reconsider.';color='#dc2626';badgeClass='badge-bad';tip='Lower price or raise down payment to reduce risk.';}const results=document.getElementById('results');results.classList.remove('hidden');document.getElementById('verdict').textContent=verdict;document.getElementById('tips').textContent=tip;const badge=document.getElementById('verdictBadge');badge.classList.remove('badge-good','badge-warn','badge-bad','hidden');badge.classList.add(badgeClass);badge.textContent=badgeClass==='badge-good'?'Affordable':(badgeClass==='badge-warn'?'Stretch':'Not OK');countUp(document.getElementById('ratioPill'),ratio,700,true);countUp(document.getElementById('emi'),emi);countUp(document.getElementById('fuelCost'),totalFuel);countUp(document.getElementById('totalCost'),totalOwnership);renderChart(ratio,color);const dpNotice=document.getElementById('dpNotice');if(dpPct<20)dpNotice.classList.remove('hidden');else dpNotice.classList.add('hidden');btn.disabled=false;}
-  // Sync sliders and number inputs
-  function styleRange(r) { try{ window.HZ_styleRange(r); }catch(e){} }
+    function calculateTax(income) { let tax = 0; if (income > 2400000) { tax = 0.30 * (income - 2400000) + 0.25 * 400000 + 0.20 * 400000 + 0.15 * 400000 + 0.10 * 400000 + 0.05 * 400000; } else if (income > 2000000) { tax = 0.25 * (income - 2000000) + 0.20 * 400000 + 0.15 * 400000 + 0.10 * 400000 + 0.05 * 400000; } else if (income > 1600000) { tax = 0.20 * (income - 1600000) + 0.15 * 400000 + 0.10 * 400000 + 0.05 * 400000; } else if (income > 1200000) { tax = 0.15 * (income - 1200000) + 0.10 * 400000 + 0.05 * 400000; } else if (income > 800000) { tax = 0.10 * (income - 800000) + 0.05 * 400000; } else if (income > 400000) { tax = 0.05 * (income - 400000); } if (income <= 1200000) { tax = 0; } return tax; }
 
-  const sliderPairs=[
-    ['downPaymentPercentRange','downPaymentPercent'],
-    ['loanTenureRange','loanTenure'],
-    ['interestRateRange','interestRate'],
-  ['mileageRange','mileage'],
-  ['fuelPriceRange','fuelPrice'],
-  ['annualIncomeRange','annualIncome'],
-  ['priceRange','price'],
-  ['roadTaxRange','roadTax'],
-  ['insuranceRange','insurance'],
-  ['monthlyDistanceRange','monthlyDistance'],
-  ['lifespanRange','lifespan']
-  ];
-  sliderPairs.forEach(([rangeId,inputId])=>{
-    const rangeEl=document.getElementById(rangeId);const inputEl=document.getElementById(inputId);if(!rangeEl||!inputEl) return;
-    const sync=(src,dst)=>{dst.value=src.value;triggerCalc();};
-    rangeEl.addEventListener('input',()=>{ sync(rangeEl,inputEl); styleRange(rangeEl); });
-    inputEl.addEventListener('input',()=>{ // clamp manually to range bounds
-      if(inputEl.min!==''&&+inputEl.value<+inputEl.min) inputEl.value=inputEl.min;
-      if(inputEl.max!==''&&+inputEl.value>+inputEl.max) inputEl.value=inputEl.max;
-      sync(inputEl,rangeEl);
+    function calculate() {
+      const btn = document.getElementById('calcBtn');
+      btn.disabled = true;
+      const annualIncome = +document.getElementById('annualIncome').value || 0;
+      const incomeTaxEl = document.getElementById('incomeTax');
+      const calculatedTax = calculateTax(annualIncome);
+      incomeTaxEl.value = Math.round(calculatedTax);
+      const incomeTax = calculatedTax;
+      const price = +document.getElementById('price').value || 0;
+      const roadTax = +document.getElementById('roadTax').value || 0;
+      const dpPct = HZ_clamp(+document.getElementById('downPaymentPercent').value || 0, 0, 100);
+      const tenureYears = Math.max(+document.getElementById('loanTenure').value || 0, 1);
+      const rateAnnual = Math.max(+document.getElementById('interestRate').value || 0, 0);
+      const monthlyKm = +document.getElementById('monthlyDistance').value || 0;
+      const mileage = Math.max(+document.getElementById('mileage').value || 1, 0.1);
+      const fuelPrice = +document.getElementById('fuelPrice').value || 0;
+      const lifespan = Math.max(+document.getElementById('lifespan').value || 0, 1);
+      const insurance = +document.getElementById('insurance').value || 0;
+      const netAnnual = Math.max(annualIncome - incomeTax, 0);
+      const onRoad = price + roadTax;
+      const downPayment = onRoad * (dpPct / 100);
+      const loan = Math.max(onRoad - downPayment, 0);
+      const n = tenureYears * 12;
+      const r = rateAnnual / 12 / 100;
+      let emi = 0;
+      if (loan > 0 && n > 0) { emi = r === 0 ? (loan / n) : (loan * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1); }
+      const fuelYear = (monthlyKm * 12 / mileage) * fuelPrice;
+      const totalFuel = fuelYear * lifespan;
+      const totalOwnership = onRoad + totalFuel + (insurance * lifespan);
+      const monthlyNet = netAnnual / 12;
+      const ratio = monthlyNet > 0 ? (emi / monthlyNet) * 100 : 100;
+      let verdict, color, tip, badgeClass;
+      if (ratio <= 15) { verdict = 'Affordable – fits budget.'; color = '#16a34a'; badgeClass = 'badge-good'; tip = 'Healthy range: maintain savings momentum.'; }
+      else if (ratio <= 25) { verdict = 'Stretching – optimise.'; color = '#f59e0b'; badgeClass = 'badge-warn'; tip = 'Increase down payment or reconsider variant.'; }
+      else { verdict = 'Not Affordable – reconsider.'; color = '#dc2626'; badgeClass = 'badge-bad'; tip = 'Lower price or raise down payment to reduce risk.'; }
+      const results = document.getElementById('results');
+      results.classList.remove('hidden');
+      document.getElementById('verdict').textContent = verdict;
+      document.getElementById('tips').textContent = tip;
+      const badge = document.getElementById('verdictBadge');
+      badge.classList.remove('badge-good', 'badge-warn', 'badge-bad', 'hidden');
+      badge.classList.add(badgeClass);
+      badge.textContent = badgeClass === 'badge-good' ? 'Affordable' : (badgeClass === 'badge-warn' ? 'Stretch' : 'Not OK');
+      HZ_countUp(document.getElementById('ratioPill'), ratio, 700, true);
+      HZ_countUp(document.getElementById('emi'), emi);
+      HZ_countUp(document.getElementById('fuelCost'), totalFuel);
+      HZ_countUp(document.getElementById('totalCost'), totalOwnership);
+      renderChart(ratio, color);
+      const dpNotice = document.getElementById('dpNotice');
+      if (dpPct < 20) dpNotice.classList.remove('hidden');
+      else dpNotice.classList.add('hidden');
+      btn.disabled = false;
+    }
+
+    const sliderPairs = [
+      ['downPaymentPercentRange', 'downPaymentPercent'],
+      ['loanTenureRange', 'loanTenure'],
+      ['interestRateRange', 'interestRate'],
+      ['mileageRange', 'mileage'],
+      ['fuelPriceRange', 'fuelPrice'],
+      ['annualIncomeRange', 'annualIncome'],
+      ['priceRange', 'price'],
+      ['roadTaxRange', 'roadTax'],
+      ['insuranceRange', 'insurance'],
+      ['monthlyDistanceRange', 'monthlyDistance'],
+      ['lifespanRange', 'lifespan']
+    ];
+    sliderPairs.forEach(([rangeId, inputId]) => {
+      HZ_syncSliderAndInput(rangeId, inputId, triggerCalc);
     });
-  });
-  // Ripple
-  document.addEventListener('click',e=>{const t=e.target.closest('.btn-ripple');if(!t)return;const r=document.createElement('span');r.className='ripple-anim';const rect=t.getBoundingClientRect();const size=Math.max(rect.width,rect.height);r.style.width=r.style.height=size+'px';r.style.left=(e.clientX-rect.left-size/2)+'px';r.style.top=(e.clientY-rect.top-size/2)+'px';t.appendChild(r);setTimeout(()=>r.remove(),600);});
-    let debounce;function triggerCalc(){clearTimeout(debounce);debounce=setTimeout(calculate,250);}document.querySelectorAll('#calcForm input').forEach(i=>{i.addEventListener('input',triggerCalc);i.addEventListener('change',triggerCalc);});document.getElementById('calcBtn').addEventListener('click',calculate);window.addEventListener('DOMContentLoaded',()=>{
-      // apply initial range styling for visual parity with FD page
-  document.querySelectorAll('input[type="range"].range-adv').forEach(r=>{try{window.HZ_styleRange(r);}catch(e){}});
+
+    let debounce;
+    function triggerCalc() { clearTimeout(debounce); debounce = setTimeout(calculate, 250); }
+    document.querySelectorAll('#calcForm input').forEach(i => { i.addEventListener('input', triggerCalc); i.addEventListener('change', triggerCalc); });
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('input[type="range"].range-adv').forEach(r => { HZ_styleRange(r); });
       calculate();
+    });
+    window.addEventListener('themeChanged', () => {
+      if (window.chart && chart.series && chart.series[0]) {
+        const ratioVal = parseFloat(document.getElementById('ratioPill').textContent) || 0;
+        const color = ratioVal <= 15 ? '#16a34a' : (ratioVal <= 25 ? '#f59e0b' : '#dc2626');
+        renderChart(ratioVal, color, true);
+      }
     });
   </script>
   <script src="/assets/js/related-calculators.js"></script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 </body>
 </html>

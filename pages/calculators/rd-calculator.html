@@ -63,7 +63,7 @@
 
   <main class="flex-1">
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid gap-10 lg:gap-12 lg:grid-cols-2">
+      <div class="calculator-layout">
         <!-- Inputs -->
         <div class="card-tw p-8 space-y-6">
           <div>
@@ -112,7 +112,7 @@
               </select>
             </label>
 
-            <div class="flex justify-end"><button id="calcBtn" type="button" class="btn-primary btn-ripple w-full sm:w-auto"><span class="inline-flex items-center gap-2"><span>Calculate</span><span aria-hidden="true">➡</span></span></button></div>
+            <div class="flex justify-end"><button id="calcBtn" type="button" class="btn-primary btn-ripple"><span class="inline-flex items-center gap-2"><span>Calculate</span><span aria-hidden="true">➡</span></span></button></div>
           </form>
 
           <div class="grid sm:grid-cols-3 gap-4 pt-2">
@@ -236,5 +236,12 @@
     // Ripple
     document.addEventListener('click',e=>{const t=e.target.closest('.btn-ripple');if(!t)return;const r=document.createElement('span');r.className='ripple-anim';const rect=t.getBoundingClientRect();const size=Math.max(rect.width,rect.height);r.style.width=r.style.height=size+'px';r.style.left=(e.clientX-rect.left-size/2)+'px';r.style.top=(e.clientY-rect.top-size/2)+'px';t.appendChild(r);setTimeout(()=>r.remove(),600);});
   </script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 </body>
 </html>

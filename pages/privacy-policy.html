@@ -116,5 +116,12 @@
   <script>
     (function(){const root=document.documentElement;const btn=document.getElementById('themeToggle');const stored=localStorage.getItem('hz-theme');if(stored==='dark'){root.classList.add('dark');btn&&btn.setAttribute('aria-pressed','true');btn&&(btn.textContent='☀️');}btn&&btn.addEventListener('click',()=>{const d=root.classList.toggle('dark');btn.setAttribute('aria-pressed',d?'true':'false');btn.textContent=d?'☀️':'🌙';localStorage.setItem('hz-theme',d?'dark':'light');});})();
   </script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 </body>
 </html>

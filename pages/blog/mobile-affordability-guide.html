@@ -180,5 +180,12 @@
     (function(){const base=window.location.href.split('#')[0];document.querySelectorAll('[data-share]')?.forEach(btn=>{btn.addEventListener('click',()=>{const t=btn.getAttribute('data-share');if(t==='copy'&&navigator.clipboard){navigator.clipboard.writeText(base);btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy URL',1600);}else if(t==='twitter'){const text=encodeURIComponent('Mobile Affordability Calculator Guide – HeroZero');const url=encodeURIComponent(base);window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`,'_blank','noopener');}});});})();
     (function(){const btn=document.getElementById('copyLink');if(!btn)return;btn.addEventListener('click',()=>{const url=window.location.href.split('#')[0];navigator.clipboard?.writeText(url);btn.textContent='Link copied';setTimeout(()=>btn.textContent='Copy link',1700);});})();
   </script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 </body>
 </html>

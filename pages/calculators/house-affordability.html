@@ -87,7 +87,7 @@
   <main class="flex-1">
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <!-- Calculator + Results -->
-      <div class="grid gap-10 lg:grid-cols-2 items-start">
+      <div class="calculator-layout">
         <!-- Form Column -->
         <div class="space-y-6">
           <div class="card-tw p-7">
@@ -118,7 +118,7 @@
                   </label>
                   <label class="text-xs font-medium text-slate-600 dark:text-slate-300 flex flex-col gap-1">Income Tax
                     <input id="incomeTax" type="number" value="0" readonly
-                      class="w-full rounded-md border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/60 px-3 py-2 text-sm focus:outline-none font-mono" />
+                      class="input-text font-mono" />
                   </label>
                   <label class="text-xs font-medium text-slate-600 dark:text-slate-300 flex flex-col gap-2"
                     data-tooltip="Property price (may exclude stamp duty)">Property price
@@ -184,7 +184,7 @@
               <div id="dpNotice" class="alert-inline hidden" role="status">Recommended down payment is at least
                 <strong>10–20%</strong> for safer mortgage ratios.</div>
               <div class="flex justify-end">
-                <button id="calcBtn" type="button" class="btn-primary btn-ripple w-full sm:w-auto"> <span
+                <button id="calcBtn" type="button" class="btn-primary btn-ripple"> <span
                     class="inline-flex items-center gap-2"><span>Calculate</span><span
                       aria-hidden="true">➡</span></span></button>
               </div>
@@ -384,6 +384,13 @@
       try { if (typeof calculate === 'function') calculate(); } catch (e) { }
     });
   </script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 </body>
 
 </html>

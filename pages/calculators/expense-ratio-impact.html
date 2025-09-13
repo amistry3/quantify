@@ -66,7 +66,7 @@
     </header>
     <main class="flex-1">
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="grid gap-10 lg:gap-12 lg:grid-cols-2 items-start">
+            <div class="calculator-layout items-start">
                 <!-- Inputs Card -->
                 <div class="card-tw p-8 space-y-8" id="inputsCard">
                     <div>
@@ -288,6 +288,13 @@
         function compute() { const P = +amountEl.value || 0; const gross = (+grossEl.value || 0) / 100; const er1 = (+er1El.value || 0) / 100; const er2 = (+er2El.value || 0) / 100; const yrs = +yearsRange.value || 1; const s1 = buildSeries(P, gross, er1, yrs); const s2 = buildSeries(P, gross, er2, yrs); const fv1 = s1[s1.length - 1]; const fv2 = s2[s2.length - 1]; const diff = Math.abs(fv1 - fv2); const diffPct = diff / Math.min(fv1, fv2) * 100 || 0; countUp(document.getElementById('fv1'), fv1); countUp(document.getElementById('fv2'), fv2); countUp(document.getElementById('diffAbs'), diff); document.getElementById('diffPct').textContent = diffPct.toFixed(2) + '%'; document.getElementById('net1').textContent = 'Net Rate: ' + ((gross - er1) * 100).toFixed(2) + '%'; document.getElementById('net2').textContent = 'Net Rate: ' + ((gross - er2) * 100).toFixed(2) + '%'; updateBadges(er1, er2); const hl = document.getElementById('highlightLine'); const lead = document.getElementById('leadLine'); const summaryBar = document.getElementById('summaryBar'); const summaryText = document.getElementById('summaryText'); const summaryPct = document.getElementById('summaryPct'); if (diff) { const leader = fv1 > fv2 ? 'ER 1' : 'ER 2'; hl.innerHTML = `<strong>${leader}</strong> ahead by <strong>${fmtINR.format(diff)}</strong> after ${yrs}y.`; lead.textContent = leader + ' leads'; summaryText.textContent = `${leader} compounds to ${fmtINR.format(Math.max(fv1, fv2))}`; summaryPct.textContent = `Gap: ${fmtINR.format(diff)} (${diffPct.toFixed(2)}%)`; summaryBar.classList.remove('opacity-0', 'scale-95'); summaryBar.classList.add('opacity-100', 'scale-100'); summaryBar.removeAttribute('aria-hidden'); } else { hl.textContent = 'Enter different expense ratios or duration to see divergence.'; lead.textContent = ''; summaryBar.classList.add('opacity-0', 'scale-95'); summaryBar.classList.remove('opacity-100', 'scale-100'); summaryBar.setAttribute('aria-hidden', 'true'); } renderChart(yrs, s1, s2, `ER ${(er1 * 100).toFixed(2)}%`, `ER ${(er2 * 100).toFixed(2)}%`); }
         ['input', 'change'].forEach(ev => [amountEl, grossEl, er1El, er2El].forEach(el => el.addEventListener(ev, compute)));
         window.addEventListener('DOMContentLoaded', () => { paintRange(); compute(); });
+    </script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
     </script>
 </body>
 

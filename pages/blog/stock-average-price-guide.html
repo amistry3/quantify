@@ -192,5 +192,12 @@
   // Copy deep link
   (function(){const btn=document.getElementById('copyLink');if(!btn)return;btn.addEventListener('click',()=>{const url=window.location.href.split('#')[0];navigator.clipboard?.writeText(url);btn.textContent='Link copied';setTimeout(()=>btn.textContent='Copy link',1700);});})();
   </script>
+    <script>
+      fetch("/pages/header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 </body>
 </html>
